@@ -1,7 +1,6 @@
 public class arvutiPlayer extends Player{
     private int handValue;
-    public
-    arvutiPlayer(String nimi) {
+    public arvutiPlayer(String nimi) {
         super(nimi);
     }
 
@@ -29,8 +28,6 @@ public class arvutiPlayer extends Player{
 
     @Override
     public String toString() {
-        return super.toString() + "arvutiPlayer{" +
-                "handValue=" + handValue +
-                '}';
+        return this.getNimi() + " Kaartide väärtus: " + handValue;
     }
 }

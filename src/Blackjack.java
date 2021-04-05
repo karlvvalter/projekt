@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
 
-///asdasd
 public class Blackjack {
-//Terekest
     public static String roundWinner(Player[] players){
         //Ei vaata viiki ega kui kõik üle panevad
         int suurim = 0;
@@ -36,8 +34,8 @@ public class Blackjack {
 
     public static void main(String[] args) {
         Player user = new Mängija("Frodo");
-        Player arvuti1 = new arvutiPlayer("Thorin");
-        Player arvuti2 = new arvutiPlayer("Gandalf");
+        Player arvuti1 = new arvutiPlayer("Arvutimängija Thorin");
+        Player arvuti2 = new arvutiPlayer("Diiler Gandalf");
 
         Player[] playersAI = {arvuti1, arvuti2};
         Player[] players = {user, arvuti1, arvuti2};
@@ -45,11 +43,15 @@ public class Blackjack {
         Kaardid kaardipakk = new Kaardid();
         kaardipakk.algseadistaPakk(2);
 
-        System.out.println("-------------------------------------");
-        System.out.println("  TERE TULEMAST ÜKSIKUMÄE KASIINOSSE  ");
-        System.out.println("   Tänaseks diileriks on Gandalf");
-        System.out.println("   Täna on tulnud mängima ka Thorin   ");
-        System.out.println("-------------------------------------");
+        System.out.println("--------------------------------------");
+        System.out.println("|                                    |");
+        System.out.println("| TERE TULEMAST ÜKSIKUMÄE KASIINOSSE |");
+        System.out.println("|             LAUAS ON :             |");
+        System.out.println("|          Diiler Gandalf            |");
+        System.out.println("|       Arvutimängija Thorin         |");
+        System.out.println("|                                    |");
+        System.out.println("--------------------------------------");
+
         System.out.println("Juhend: ");
         user.printControls();
 

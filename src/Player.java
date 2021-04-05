@@ -23,11 +23,4 @@ abstract class Player {
     abstract void addValue(Kaart kaart);
 
     public void printControls(){};
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "nimi='" + nimi + '\'' +
-                '}';
-    }
 }

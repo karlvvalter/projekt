@@ -30,8 +30,6 @@ public class Mängija extends Player{
 
     @Override
     public String toString() {
-        return super.toString() + "Mängija{" +
-                "handValue=" + handValue +
-                '}';
+        return "TEIE KAARTIDE VÄÄRTUS: " + handValue;
     }
 }
