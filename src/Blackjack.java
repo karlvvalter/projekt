@@ -49,11 +49,11 @@ public class Blackjack {
     public static void main(String[] args) {
         Player user = new Mängija("Frodo");
         Player arvuti1 = new arvutiPlayer("Arvutimängija Thorin");
-        Player arvuti2 = new arvutiPlayer("Diiler Gandalf");
+        Player diiler = new arvutiPlayer("Diiler Gandalf");
 
-        Player[] playersAI = {arvuti1, arvuti2};
-        Player[] players = {user, arvuti1, arvuti2};
-        Player diiler = arvuti2;
+        Player[] playersAI = {arvuti1, diiler};
+        Player[] players = {user, arvuti1, diiler};
+
 
         Kaardid kaardipakk = new Kaardid();
         kaardipakk.algseadistaPakk(2);
