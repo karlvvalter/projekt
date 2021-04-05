@@ -1,8 +1,7 @@
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Blackjack {
-
+//Terekest
     public static String roundWinner(Player[] players){
         //Ei vaata viiki ega kui kõik üle panevad
         int suurim = 0;
