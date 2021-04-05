@@ -67,7 +67,12 @@ public class Blackjack {
         System.out.println();
 
         boolean uusRaund = true;
+        boolean jätkub = true;
+
         while (true){
+            while (jätkub){
+
+            }
             if (uusRaund) {
                 Kaart diileriKaart = kaardipakk.annaKaart();
                 diiler.addValue(diileriKaart);
@@ -85,6 +90,7 @@ public class Blackjack {
                 System.out.println("Tõmbasid: " + kaart);
                 user.addValue(kaart);
                 showTable(allPlayers);
+
             }
             else if (valik == 2){
                 for (Player player : playersAI) {

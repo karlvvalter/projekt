@@ -6,6 +6,10 @@ public class Kaardid {
     public int kaartepakis = 0;
     public List<Kaart> kaardipakk= new ArrayList();
 
+    public int getKaartepakis() {
+        return kaartepakis;
+    }
+
     public List<Kaart> algseadistaPakk(int pakkideKogus){
         for (int i = 0; i < pakkideKogus; i++) {
             for (String kaart : kaardid) {
@@ -24,7 +28,7 @@ public class Kaardid {
 
     public Kaart annaKaart(){
         kaartepakis = kaardipakk.size();
-        int juhuslikIndeks = suvalineArv(0, kaartepakis);
+        int juhuslikIndeks = suvalineArv(0, kaartepakis-1);
         Kaart uus = kaardipakk.get(juhuslikIndeks);
         kaardipakk.remove(juhuslikIndeks);
         return uus;
