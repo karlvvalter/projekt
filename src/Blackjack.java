@@ -2,6 +2,20 @@ import java.util.Scanner;
 
 
 public class Blackjack {
+
+    public static void algseadistaLaud(Kaardid kaardipakk, Player kasutaja, Player diiler){
+        for (int i = 0; i < 2; i++) {
+            Kaart kaart = kaardipakk.annaKaart();
+            kasutaja.addValue(kaart);
+        }
+        for (int i = 0; i < 2; i++) {
+            Kaart kaart = kaardipakk.annaKaart();
+            diiler.addValue(kaart);
+        }
+        System.out.println(kasutaja.toString());
+        System.out.println(diiler.toString());
+    }
+
     public static String roundWinner(Player[] players){
         //Ei vaata viiki ega kui kõik üle panevad
         int suurim = 0;
@@ -39,6 +53,7 @@ public class Blackjack {
 
         Player[] playersAI = {arvuti1, arvuti2};
         Player[] players = {user, arvuti1, arvuti2};
+        Player diiler = arvuti2;
 
         Kaardid kaardipakk = new Kaardid();
         kaardipakk.algseadistaPakk(2);
@@ -55,10 +70,11 @@ public class Blackjack {
         System.out.println("Juhend: ");
         user.printControls();
 
-        showTable(players);
+
         System.out.println();
 
         while (true){
+            algseadistaLaud(kaardipakk, user, diiler);
             Scanner scan = new Scanner(System.in);
             System.out.print("Sisesta valik: ");
             int valik = scan.nextInt();
