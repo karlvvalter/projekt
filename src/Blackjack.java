@@ -46,7 +46,7 @@ public class Blackjack {
         Player[] playersAI = {arvuti1, diiler};
         Player[] allPlayers = {user, arvuti1, diiler};
         Player[] ainultMängijad = {user, arvuti1};
-        
+
 
         Kaardid kaardipakk = new Kaardid();
         kaardipakk.algseadistaPakk(2);
