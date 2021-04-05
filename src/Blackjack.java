@@ -3,20 +3,16 @@ import java.util.Scanner;
 
 public class Blackjack {
 
-    public static void algseadistaLaud(Kaardid kaardipakk, Player kasutaja, Player diiler){
+    public static void algseadistaLaud(Kaardid kaardipakk, Player[] mängijad){
         for (int i = 0; i < 2; i++) {
-            Kaart kaart = kaardipakk.annaKaart();
-            kasutaja.addValue(kaart);
+            for (Player player : mängijad) {
+                Kaart kaart = kaardipakk.annaKaart();
+                player.addValue(kaart);
+            }
         }
-        for (int i = 0; i < 2; i++) {
-            Kaart kaart = kaardipakk.annaKaart();
-            diiler.addValue(kaart);
-        }
-        System.out.println(kasutaja.toString());
-        System.out.println(diiler.toString());
     }
 
-    public static String roundWinner(Player[] players){
+    public static void roundWinner(Player[] players){
         //Ei vaata viiki ega kui kõik üle panevad
         int suurim = 0;
         String nimi = "";
@@ -27,7 +23,12 @@ public class Blackjack {
                 nimi = player.getNimi();
             }
         }
-        return nimi;
+        System.out.println("Selle käe võitja oli:");
+        System.out.println(nimi);
+        System.out.println("Lõppseis: ");
+        showTable(players);
+        System.out.println("---------------------------");
+        System.out.println("Uus mäng:");
     }
 
     public static void showTable(Player[] players){
@@ -36,15 +37,6 @@ public class Blackjack {
         }
     }
 
-    public static void makeAiMove(Player[] arvuti, Kaardid pakk){
-        for (Player player : arvuti) {
-            Kaart kaart = pakk.annaKaart();
-            int hand = player.getHandValue();
-            if (player.draw(hand)){
-                player.addValue(kaart);
-            }
-        }
-    }
 
     public static void main(String[] args) {
         Player user = new Mängija("Frodo");
@@ -52,7 +44,8 @@ public class Blackjack {
         Player diiler = new arvutiPlayer("Diiler Gandalf");
 
         Player[] playersAI = {arvuti1, diiler};
-        Player[] players = {user, arvuti1, diiler};
+        Player[] allPlayers = {user, arvuti1, diiler};
+        Player[] ainultMängijad = {user, arvuti1};
 
 
         Kaardid kaardipakk = new Kaardid();
@@ -73,9 +66,17 @@ public class Blackjack {
 
         System.out.println();
 
+        boolean uusRaund = true;
         while (true){
-            algseadistaLaud(kaardipakk, user, diiler);
+            if (uusRaund) {
+                Kaart diileriKaart = kaardipakk.annaKaart();
+                diiler.addValue(diileriKaart);
+                algseadistaLaud(kaardipakk, ainultMängijad);
+                showTable(allPlayers);
+                uusRaund = false;
+            }
             Scanner scan = new Scanner(System.in);
+            System.out.println();
             System.out.print("Sisesta valik: ");
             int valik = scan.nextInt();
 
@@ -83,7 +84,7 @@ public class Blackjack {
                 Kaart kaart = kaardipakk.annaKaart();
                 System.out.println("Tõmbasid: " + kaart);
                 user.addValue(kaart);
-                System.out.println(user.toString());
+                showTable(allPlayers);
             }
             else if (valik == 2){
                 for (Player player : playersAI) {
@@ -94,13 +95,14 @@ public class Blackjack {
                 }
 
                 System.out.println("-------------------------------");
-                showTable(players);
+                showTable(allPlayers);
                 System.out.println("-------------------------------");
-                System.out.println("Selle käe võitja oli:");
-                System.out.println(roundWinner(players));
-                for (Player player : players) {
+                roundWinner(allPlayers);
+
+                for (Player player : allPlayers) {
                     player.newHand();
                 }
+                uusRaund = true;
 
             }else if (valik == 3){
                 System.out.println("Mäng läbi :)");
