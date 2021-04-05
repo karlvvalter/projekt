@@ -33,14 +33,4 @@ public class Kaardid {
     }
      */
 
-    public void printDeck(){
-        int i = 0;
-        for (Kaart kaart : this.kaardiPakk.keySet()){
-            if (i == 6)
-                System.out.print("\n");
-            System.out.print(kaart + " = " + this.kaardiPakk.get(kaart) + "  ");
-            i++;
-        }
-        System.out.println();
-    }
 }
