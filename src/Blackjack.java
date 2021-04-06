@@ -36,7 +36,7 @@ public class Blackjack {
         System.out.println("-------------------------------");
         try {Thread.sleep(1000);}
         catch (Exception e){
-            System.out.println("asdfasfasdasfasf");
+            System.out.println();
         }
         System.out.println();
         System.out.println("|          UUS KÄSI           |");
@@ -106,6 +106,7 @@ public class Blackjack {
                     uusRaund = false;
                 }
                 if (user.getHandValue() > 21) {
+                    System.out.println("Kaartide väärtus üle 21 ");
                     break;
                 }
 
