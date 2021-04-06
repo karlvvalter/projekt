@@ -11,9 +11,9 @@ public class Kaardid {
     }
 
     public List<Kaart> algseadistaPakk(int pakkideKogus){
-        for (int i = 0; i < pakkideKogus; i++) {
-            for (String kaart : kaardid) {
-                kaardipakk.add(new Kaart(kaart));
+        for (int i = 0; i < pakkideKogus*4; i++) {
+            for (String elem : kaardid) {
+                kaardipakk.add(new Kaart(elem));
             }
         }
         kaartepakis = kaardipakk.size();
@@ -27,10 +27,10 @@ public class Kaardid {
     }
 
     public Kaart annaKaart(){
-        kaartepakis = kaardipakk.size();
         int juhuslikIndeks = suvalineArv(0, kaartepakis-1);
         Kaart uus = kaardipakk.get(juhuslikIndeks);
         kaardipakk.remove(juhuslikIndeks);
+        kaartepakis = kaardipakk.size();
         return uus;
     }
 

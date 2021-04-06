@@ -1,6 +1,8 @@
 abstract class Player {
     private String nimi;
     private int handValue;
+    private int mituÄssa;
+
 
     public Player(String nimi) {
         this.nimi = nimi;
