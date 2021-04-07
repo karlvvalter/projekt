@@ -1,24 +1,27 @@
 import java.util.Scanner;
 
-
 public class Blackjack {
 
-    public static void algseadistaLaud(Kaardid kaardipakk, Player[] mängijad){
+    //Meetodi väljakutsumine jagab mängijatele esimesed kaks kaarti
+    public static void algseadistaLaud(Kaardid kaardipakk, Player[] mängijad) {
         System.out.print("TEIE KAARDID ON: ");
         for (int i = 0; i < 2; i++) {
             for (Player player : mängijad) {
+                //Tõmbame pakist uue kaardi ning lisame selle väärtuse vastavale mängijale
                 Kaart kaart = kaardipakk.annaKaart();
                 player.addValue(kaart);
-                if(player.getNimi().equals("TEIE")){
+                if (player.getNimi().equals("TEIE")) {
                     System.out.print(kaart + " ");
                 }
             }
         }
         System.out.println();
     }
+
     public static String reeglid = "\nIgale mängijale jagatakse kaks kaarti ja seejärel pakutakse võimalust lisakaarte võtta.\n Suurema punktisummaga käsi võidab, juhul, kui punktisumma ei ületa 21;\n käsi, mille punktisumma on suurem kui 21, loetakse kaotanuks.\n Kaardid 2-st 10-ni on nimiväärtusega ning pildikaartide väärtuseks on kümme punkti.\n Äss on kas 1 või 11 punkti,\n sõltuvalt sellest kas punktide kogusumma püsib 21 piires\n";
-    public static void roundWinner(Player[] players){
-        //Ei vaata viiki ega kui kõik üle panevad
+
+    //Meetod, mille väljakutsumine väljastab ekraanile mängitud käe võitja
+    public static void roundWinner(Player[] players) {
         int suurim = 0;
         String nimi = "";
         for (Player player : players) {
@@ -34,15 +37,17 @@ public class Blackjack {
         System.out.println("Lõppseis: ");
         showTable(players);
         System.out.println("-------------------------------");
-        try {Thread.sleep(1000);}
-        catch (Exception e){
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
             System.out.println();
         }
         System.out.println();
         System.out.println("|          UUS KÄSI           |");
     }
 
-    public static void showTable(Player[] players){
+    //Meetodi väljakutsumise korral prinditakse ekraanile mängijate kaartide väärtused.
+    public static void showTable(Player[] players) {
         for (Player player : players) {
             System.out.println(player);
         }
@@ -50,15 +55,17 @@ public class Blackjack {
 
 
     public static void main(String[] args) throws InterruptedException {
+        //Loome uued mängijad
         Player user = new Mängija("TEIE");
         Player arvuti1 = new arvutiPlayer("Arvutimängija Thorin");
         Player diiler = new arvutiPlayer("Diiler Gandalf");
 
+        //Loome vajalikud massiivid
         Player[] playersAI = {arvuti1, diiler};
         Player[] allPlayers = {user, arvuti1, diiler};
         Player[] ainultMängijad = {user, arvuti1};
 
-
+        //Teeme kaardipaki
         Kaardid kaardipakk = new Kaardid();
         kaardipakk.algseadistaPakk(2);
 
@@ -81,14 +88,27 @@ public class Blackjack {
         boolean jätkub = true;
         boolean mäng = true;
 
+        //Alustame mängimist
         while (mäng) {
             System.out.println("Mängimiseks sisesta [ 1 ] ");
-            while(true) {
+            while (true) {
                 Scanner scan = new Scanner(System.in);
                 int valik = scan.nextInt();
-                if(valik == 1){
+                if (valik == 1)
                     break;
-            }
+                else if (valik == 2)
+                    break;
+                else if (valik == 3) {
+                    mäng = false;
+                    jätkub = false;
+                    break;
+                } else if (valik == 4)
+                    System.out.println(reeglid);
+                else if (valik == 5)
+                    user.printControls();
+                else {
+                    System.out.println("Ebasobiv sisend!");
+                }
             }
             while (jätkub) {
                 if (kaardipakk.getKaartepakis() < 6) {
@@ -151,8 +171,7 @@ public class Blackjack {
                 uusRaund = true;
                 jätkub = true;
 
-            }
-            else if(mäng) {
+            } else if (mäng) {
                 Thread.sleep(500);
                 kaardipakk.algseadistaPakk(2);
                 System.out.println("-------------------------------");
