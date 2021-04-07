@@ -1,4 +1,4 @@
-public class Mängija extends Player{
+public class Mängija extends Player {
     private int handValue;
     private int mituÄssa;
 
@@ -6,21 +6,22 @@ public class Mängija extends Player{
         super(nimi);
     }
 
+    //Algväärtustab mängija käe
     @Override
     void newHand() {
         this.handValue = 0;
         this.mituÄssa = 0;
     }
 
+    //Tagastab mängija käe väärtuse
     @Override
     public int getHandValue() {
         int uus = this.handValue;
-        if(this.mituÄssa > 0){
+        if (this.mituÄssa > 0) {
             for (int i = 0; i < this.mituÄssa; i++) {
-                if(uus > 21){
+                if (uus > 21) {
                     uus = uus - 10;
-                }
-                else{
+                } else {
                     break;
                 }
             }
@@ -28,15 +29,16 @@ public class Mängija extends Player{
         return uus;
     }
 
-    public void addValue(Kaart kaart){
-        if(kaart.getValue() == 11){
+    //Lisab kaardi väärtuse mängija käele
+    public void addValue(Kaart kaart) {
+        if (kaart.getValue() == 11) {
             this.mituÄssa = this.mituÄssa + 1;
         }
         this.handValue += kaart.getValue();
     }
 
-
-    public void printControls(){
+    //Info
+    public void printControls() {
         System.out.println("1 - võta kaart juurde");
         System.out.println("2 - lõpeta käik");
         System.out.println("3 - lõpeta mäng");

@@ -1,10 +1,10 @@
 import java.util.HashMap;
 
-public class Kaart extends Kaardid{
+public class Kaart extends Kaardid {
     private String kaart;
     private HashMap<String, Integer> values = new HashMap<>();
 
-
+    //Kaartide väärtuse määramine
     public Kaart(String kaart) {
         this.kaart = kaart;
         this.values.put("2", 2);
@@ -27,10 +27,9 @@ public class Kaart extends Kaardid{
         return kaart;
     }
 
-
+    //Kaardi väärtuse saamine
     public int getValue() {
         return this.values.get(this.kaart);
     }
-
 
 }
